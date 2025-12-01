@@ -13,7 +13,8 @@
     "preview": "vite preview --port 3002",
     "server": "node server.js",
     "start:all": "concurrently \"npm run dev\" \"npm run server\"",
-    "azure": "npm run build && node server.js"
+    "azure": "npm run build && node server.js",
+    "start-azure": "npm run build && node server.js"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.26.2",
