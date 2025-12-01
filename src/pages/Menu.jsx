@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { Search, Filter, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+import { api } from '../config/api';
 
 const categories = ['All', 'Pizza', 'Pasta', 'Burgers', 'Salads', 'Desserts', 'Drinks'];
 
@@ -20,19 +19,13 @@ export default function Menu() {
     // Fetch menu items from FastAPI backend
     const fetchMenuItems = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/menu/`);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
+        const data = await api.get('/api/menu/');
         console.log('Fetched menu items from API:', data);
         setItems(data);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching menu items:', error);
-        alert('Failed to load menu items. Make sure the FastAPI server is running on port 8000.');
+        alert('Failed to load menu items. Make sure the backend is running.');
         setIsLoading(false);
       }
     };
