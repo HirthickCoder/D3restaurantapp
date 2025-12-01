@@ -1,0 +1,11 @@
+// Azure configuration file
+{
+  "name": "my-restaurant-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node start-azure.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

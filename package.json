@@ -7,7 +7,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "vite --port 3002",
+    "start": "node start-azure.js",
     "dev": "vite --port 3002",
     "build": "vite build",
     "preview": "vite preview --port 3002",
