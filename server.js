@@ -11,7 +11,7 @@ const app = express();
 
 // Enable CORS for production
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://d3projectrestaurants.heaghaed2budngs.southeastasia.01.azurewebsites.net'],
+  origin: ['http://localhost:5173', 'https://d3projectrestaurants-heaghae6d2budngs.southeastasia-01.azurewebsites.net'],
   credentials: true
 }));
 
@@ -23,7 +23,14 @@ app.get('/api/test', (req, res) => {
 });
 
 // Serve static React files
+app.use('/assets', express.static(path.join(__dirname, 'dist', 'assets')));
+app.use('/images', express.static(path.join(__dirname, 'dist', 'images')));
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // Handle React routing - return index.html for all non-API routes
 app.get('*', (req, res) => {
