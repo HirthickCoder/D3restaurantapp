@@ -7,14 +7,14 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "start": "node azure-start.js",
+    "start": "node server.js",
     "dev": "vite --port 3002",
     "build": "vite build",
     "preview": "vite preview --port 3002",
     "serve": "node server.js",
     "start:all": "concurrently \"npm run dev\" \"npm run serve\"",
     "azure": "npm run build",
-    "start-azure": "npm run build"
+    "start-azure": "npm run build && node server.js"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.26.2",
