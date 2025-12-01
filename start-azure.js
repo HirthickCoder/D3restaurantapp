@@ -1,5 +1,9 @@
-const { execSync } = require('child_process');
-const path = require('path');
+import { execSync } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 console.log('Building React app...');
 try {
@@ -11,4 +15,4 @@ try {
 }
 
 console.log('Starting server...');
-require('./server.js');
+await import('./server.js');
