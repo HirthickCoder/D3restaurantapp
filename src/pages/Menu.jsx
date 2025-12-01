@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { Search, Filter, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const categories = ['All', 'Pizza', 'Pasta', 'Burgers', 'Salads', 'Desserts', 'Drinks'];
 

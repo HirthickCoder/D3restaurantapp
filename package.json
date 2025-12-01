@@ -2,19 +2,19 @@
   "name": "my-restaurant-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "engines": {
     "node": ">=14.0.0"
   },
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "dev": "vite --port 3002",
     "build": "vite build",
     "preview": "vite preview --port 3002",
-    "serve": "node server.js",
+    "serve": "node app.js",
     "start:all": "concurrently \"npm run dev\" \"npm run serve\"",
     "azure": "npm run build",
-    "start-azure": "npm run build && node server.js"
+    "start-azure": "npm run build && node app.js"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.26.2",

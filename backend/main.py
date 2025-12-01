@@ -14,14 +14,22 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # CORS middleware configuration
+# Get allowed origins from environment variable or use defaults
+allowed_origins = os.getenv("ALLOWED_ORIGINS", 
+    "http://localhost:5173,http://localhost:3002,http://localhost:3000,http://localhost:8080"
+).split(",")
+
+# Add Azure frontend URLs when in production
+if os.getenv("ENVIRONMENT") == "production":
+    azure_origins = [
+        "https://d3projectrestaurants-heaghae6d2budngs.southeastasia-01.azurewebsites.net",
+        "https://myrestaurants-apps-ezhfzcbwcabecrdb.eastus2-01.azurewebsites.net"
+    ]
+    allowed_origins.extend(azure_origins)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",  # Vite default
-        "http://localhost:3002",  # Your React URL
-        "http://localhost:3000",  # Alternative port
-        "https://myrestaurants-apps-ezhfzcbwcabecrdb.eastus2-01.azurewebsites.net"  # Azure frontend
-    ],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
